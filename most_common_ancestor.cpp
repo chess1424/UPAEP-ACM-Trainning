@@ -54,6 +54,28 @@ int find_parent(node* root, int n1,int n2){
 
 }
 
+//Correct
+int find_parent(node* root, int n1,int n2){
+        if(solved || !root)
+            return 0;
+
+        if(!root->left && !root->right){ //Is leaf
+            return root->value == n1 || root->value == n2;
+        }
+        else{
+            int m = find_parent(root -> left, n1, n2) + find_parent(root -> right, n1, n2);
+
+            if(m==2){
+                cout << root->value << endl;
+                solved = true;
+                return 0;
+            } else {
+                return m + (root->value == n1 || root ->value == n2);
+            }
+
+        }
+}
+
 n1 = 20
 n2 = 11
 
